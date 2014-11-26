@@ -1,0 +1,10 @@
+{
+  "jspm": {
+    "name": "atoms",
+    "dependencies": {
+      "angular": "^1.3.4",
+      "text": "^0.0.2",
+      "theseus": "github:argo-rest/theseus@master"
+    }
+  }
+}

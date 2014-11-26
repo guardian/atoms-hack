@@ -1,0 +1,4 @@
+vendor
+public/jspm_packages
+Gemfile.lock
+.bundle

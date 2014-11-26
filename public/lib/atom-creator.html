@@ -1,0 +1,37 @@
+<input type="text"
+       placeholder="Enter a title…"
+       ng:model="model.title"
+/>
+
+<div ng:switch="model.type">
+    <div ng:switch-when="explainer">
+        <div class="wiki-matches">
+            <label>Wikipedia</label>
+            <ul>
+                <li ng:repeat="wikiEntry in wikiEntries">
+                    <button class="link" ng:click="atomCreatorCtrl.importWikiEntry(wikiEntry)">{{wikiEntry.label}}</button>
+                </li>
+            </ul>
+        </div>
+        <textarea placeholder="Enter a description…" ng:model="model.description"></textarea>
+    </div>
+</div>
+
+<div>
+    <label>Entities</label>
+
+    <ul>
+        <li ng:repeat="entity in model.entities">
+            {{entity.name}}
+            <span ng:if="entity.type" class="entity-type">{{entity.type}}</span>
+            <button ng:click="atomCreatorCtrl.removeEntity(entity)">x</button>
+        </li>
+    </ul>
+
+    <input type="text" placeholder="Enter a name…" ng:model="entityInput"/>
+    <button ng:click="atomCreatorCtrl.addEntity(entityInput)"
+            ng:disabled="! entityInput">Add</button>
+</div>
+
+<button ng:click="cancel()">Cancel</button>
+<button ng:click="submit()">Save</button>

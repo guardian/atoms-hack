@@ -1,0 +1,12 @@
+.wiki-matches {
+    float: right;
+}
+
+.link {
+    text-decoration: underline;
+    border: 0;
+    background-color: transparent;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+}

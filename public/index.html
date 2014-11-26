@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Atoms</title>
+        <!-- <script src="/jspm_packages/traceur.js"></script> -->
+        <script src="jspm_packages/system.js"></script>
+        <script src="config.js"></script>
+        <!-- <script type="module" src="/lib/app.js"></script> -->
+        <script>
+            System.import("lib/app").catch(function(error) {
+                setTimeout(function(){ throw error; });
+            });
+        </script>
+        <style>
+            [ng\:cloak] { display: none }
+        </style>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <h1>Atoms</h1>
+
+        <div ng:controller="AtomCtrl as atomCtrl" ng:cloak>
+            <form>
+                <button ng:if="! newAtom"
+                        ng:click="atomCtrl.create('explainer')"
+                >New explainer</button>
+                <atom-creator ng:if="newAtom"
+                              model="newAtom"
+                              on-cancel="atomCtrl.resetNewAtom()"
+                              on-submit="atomCtrl.submitNewAtom(newAtom)"
+                ></atom-creator>
+            </form>
+
+            <!-- <input type="text" ng:model="filter" /> -->
+            <ul>
+                <li ng:repeat="atom in atoms">
+                    {{atom.data.type}}
+                    <button class="link"
+                            ng:click="atomCtrl.editAtom(atom)"
+                    >{{atom.data.title}}</button>
+                </li>
+            </ul>
+
+            <atom-creator ng:if="atomCtrl.editedAtom"
+                          model="atomCtrl.editedAtom.data"
+                          on-cancel="atomCtrl.resetEditedAtom()"
+                          on-submit="atomCtrl.saveEditedAtom(atomCtrl.editedAtom.resource, atomCtrl.editedAtom.data)"
+            ></atom-creator>
+        </div>
+    </body>
+</html>
